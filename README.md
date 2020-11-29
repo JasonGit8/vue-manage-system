@@ -1,16 +1,18 @@
 # vue-cli
+### 基于Vue CLI Element-ui 后台管理系统
+#### 已经配置好代理、路由、request请求拦截、api集中管理，开箱即用
 
-## Project setup
+## 下载依赖
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 开发运行
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 打包生产
 ```
 npm run build
 ```
@@ -19,6 +21,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
