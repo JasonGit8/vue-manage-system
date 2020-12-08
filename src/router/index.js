@@ -1,30 +1,54 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Vue from 'vue';
+import Router from 'vue-router';
 
-Vue.use(VueRouter);
+Vue.use(Router);
 
-const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: Home
-  },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
-  }
-];
-
-const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes
+export default new Router({
+    routes: [
+        {
+            path: '/',
+            redirect: '/home'
+        },
+        {
+            path: '/',
+            component: () => import('@/components/common/Layouts.vue'),
+            meta: { title: '布局' },
+            children: [
+                {
+                    path: '/home',
+                    component: () => import('@/views/home/home.vue'),
+                    meta: { title: '首页' }
+                },
+                {
+                    path: '/form',
+                    component: () => import('@/components/page/BaseForm.vue'),
+                    meta: { title: '基本表单' }
+                },
+                {
+                    path: '/editor',
+                    component: () => import('@/components/page/VueEditor.vue'),
+                    meta: { title: '富文本编辑器' }
+                },
+                {
+                    path: '/404',
+                    component: () => import('@/views/error/404.vue'),
+                    meta: { title: '404' }
+                },
+                {
+                    path: '/403',
+                    component: () => import('@/views/error/403.vue'),
+                    meta: { title: '403' }
+                }
+            ]
+        },
+        {
+            path: '/login',
+            component: () => import('@/views/login/Login.vue'),
+            meta: { title: '登录' }
+        },
+        {
+            path: '*',
+            redirect: '/404'
+        }
+    ]
 });
-
-export default router;
